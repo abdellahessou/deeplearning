@@ -57,6 +57,17 @@ Le script produit dans `models/` le modèle final (`<modèle>.keras`), le meille
 l'historique (`<modèle>_phase1_history.csv`), et dans `reports/figures/` les courbes (`courbes_<modèle>.png`).
 
 Sans GPU, utiliser `notebooks/colab_train.ipynb` sur Google Colab (Exécution > Modifier le type d'exécution > GPU T4).
+Ce notebook est prévu pour Colab uniquement : ne pas l'exécuter sur le PC.
+
+## Comparaison des modèles
+
+```bash
+python src/compare.py
+```
+
+Évalue sur le test set tous les modèles présents dans `models/` et produit `reports/comparaison.csv`
+(accuracy, precision, recall, F1, AUC, nombre de paramètres, temps d'inférence par image) ainsi que
+`reports/figures/comparaison_modeles.png`.
 
 ## Structure du projet
 

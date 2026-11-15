@@ -17,7 +17,7 @@ from tensorflow import keras
 
 from config import MODELS_DIR, FIG_DIR, SEED
 from data import get_datasets, class_weights
-from models import build_model, compile_model, fine_tune
+from models import build_model, compile_model, fine_tune, N_UNFREEZE
 
 keras.utils.set_random_seed(SEED)   # fixe les tirages de Python, NumPy et TensorFlow
 
@@ -63,7 +63,7 @@ def tracer_courbes(name):
     print("Courbes sauvegardées :", FIG_DIR / f"courbes_{name}.png")
 
 
-def entrainer(name, epochs1=15, epochs2=10, n_unfreeze=30):
+def entrainer(name, epochs1=15, epochs2=10):
     MODELS_DIR.mkdir(exist_ok=True)
     train, val, _ = get_datasets(name)      # le test n'est PAS utilisé pendant l'entraînement
     cw = class_weights()
@@ -80,7 +80,7 @@ def entrainer(name, epochs1=15, epochs2=10, n_unfreeze=30):
 
     # Phase 2 : fine-tuning des dernières couches (lr très faible)
     if epochs2 > 0:
-        fine_tune(base, n_unfreeze)
+        fine_tune(base, N_UNFREEZE[name])   # dégèle le dernier bloc, BatchNorm toujours gelées
         compile_model(model, lr=1e-5)       # recompiler après avoir changé trainable
         model.fit(train, validation_data=val, epochs=epochs2,
                   class_weight=cw, callbacks=callbacks(name, "phase2"))

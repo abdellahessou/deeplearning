@@ -19,6 +19,15 @@ LAST_CONV = {
 }
 
 
+# Nombre de couches dégelées au fine-tuning (étape 4) : à peu près le dernier bloc
+# convolutionnel de chaque modèle. VGG19 n'a que 22 couches : avec 30, on dégèlerait tout.
+N_UNFREEZE = {
+    "mobilenetv2": 30,   # blocs 14 à 16 + dernière convolution
+    "resnet50": 30,      # étage conv5
+    "vgg19": 5,          # bloc 5 (4 convolutions + pooling)
+}
+
+
 def build_model(name, dropout=0.3):
     """Renvoie (modèle complet, base pré-entraînée). La base est gelée."""
     inputs = keras.Input(shape=IMG_SIZE + (3,))             # image 224x224 à 3 canaux
