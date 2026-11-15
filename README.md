@@ -38,6 +38,12 @@ L'archive contient un dossier en double (`chest_xray/chest_xray`) et un dossier 
 
 L'exploration (répartition des classes, exemples de radios) est dans `notebooks/01_exploration.ipynb`.
 
+Tester le pipeline de données (9 images augmentées dans `reports/figures/augmentation.png` et poids des classes) :
+
+```bash
+python src/data.py
+```
+
 ## Structure du projet
 
 ```
@@ -58,7 +64,7 @@ L'exploration (répartition des classes, exemples de radios) est dans `notebooks
 
 - [x] Étape 0 – Environnement et structure
 - [x] Étape 1 – Données : téléchargement et nouveau split
-- [ ] Étape 2 – Pipeline de données, augmentation, poids des classes
+- [x] Étape 2 – Pipeline de données, augmentation, poids des classes
 - [ ] Étape 3 – Modèle de base et entraînement (transfer learning)
 - [ ] Étape 4 – Fine-tuning et comparaison des 3 modèles
 - [ ] Étape 5 – Évaluation complète
