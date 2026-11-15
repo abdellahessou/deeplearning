@@ -44,6 +44,20 @@ Tester le pipeline de données (9 images augmentées dans `reports/figures/augme
 python src/data.py
 ```
 
+## Entraînement
+
+```bash
+python src/train.py --model mobilenetv2 --epochs2 0    # phase 1 seule (base gelée)
+python src/train.py --model resnet50                   # phase 1 + fine-tuning
+```
+
+Options : `--model` (`mobilenetv2`, `resnet50`, `vgg19`), `--epochs1` (15 par défaut), `--epochs2` (10 par défaut, 0 = pas de fine-tuning).
+
+Le script produit dans `models/` le modèle final (`<modèle>.keras`), le meilleur modèle de chaque phase et
+l'historique (`<modèle>_phase1_history.csv`), et dans `reports/figures/` les courbes (`courbes_<modèle>.png`).
+
+Sans GPU, utiliser `notebooks/colab_train.ipynb` sur Google Colab (Exécution > Modifier le type d'exécution > GPU T4).
+
 ## Structure du projet
 
 ```
@@ -65,7 +79,7 @@ python src/data.py
 - [x] Étape 0 – Environnement et structure
 - [x] Étape 1 – Données : téléchargement et nouveau split
 - [x] Étape 2 – Pipeline de données, augmentation, poids des classes
-- [ ] Étape 3 – Modèle de base et entraînement (transfer learning)
+- [x] Étape 3 – Modèle de base et entraînement (transfer learning)
 - [ ] Étape 4 – Fine-tuning et comparaison des 3 modèles
 - [ ] Étape 5 – Évaluation complète
 - [ ] Étape 6 – Explicabilité avec Grad-CAM
