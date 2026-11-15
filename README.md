@@ -9,8 +9,8 @@ une explication visuelle des prédictions (Grad-CAM) et une application Streamli
 ## Installation
 
 ```bash
-python -m venv .venv
-.venv\Scripts\activate          # Linux / macOS : source .venv/bin/activate
+py -3.11 -m venv .venv311       # Linux / macOS : python3.11 -m venv .venv311
+.venv311\Scripts\activate       # Linux / macOS : source .venv311/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -21,6 +21,22 @@ python -c "import tensorflow as tf; print(tf.__version__, tf.config.list_physica
 ```
 
 Une liste vide `[]` signifie que la machine travaille sur CPU : l'entraînement se fait alors sur Google Colab.
+
+## Données
+
+1. Créer un jeton sur kaggle.com > Settings > API, puis l'enregistrer dans `~/.kaggle/access_token`
+   (ou `kaggle.json` pour une clé « legacy »). Ne jamais le mettre dans le projet.
+2. Télécharger le dataset, puis refaire le split train / val / test :
+
+```bash
+python -m kaggle datasets download -d paultimothymooney/chest-xray-pneumonia -p data/raw --unzip
+python src/split_data.py
+```
+
+L'archive contient un dossier en double (`chest_xray/chest_xray`) et un dossier `__MACOSX` : on ne garde que
+`data/raw/chest_xray/` avec ses sous-dossiers `train`, `val` et `test`.
+
+L'exploration (répartition des classes, exemples de radios) est dans `notebooks/01_exploration.ipynb`.
 
 ## Structure du projet
 
@@ -41,7 +57,7 @@ Une liste vide `[]` signifie que la machine travaille sur CPU : l'entraînement 
 ## Avancement
 
 - [x] Étape 0 – Environnement et structure
-- [ ] Étape 1 – Données : téléchargement et nouveau split
+- [x] Étape 1 – Données : téléchargement et nouveau split
 - [ ] Étape 2 – Pipeline de données, augmentation, poids des classes
 - [ ] Étape 3 – Modèle de base et entraînement (transfer learning)
 - [ ] Étape 4 – Fine-tuning et comparaison des 3 modèles

@@ -1,6 +1,6 @@
 tensorflow>=2.16
 numpy
-pandas
+pandas<3  # pandas 3.x : fichier DLL bloqué par le contrôle d'application de Windows sur ce PC
 scikit-learn
 matplotlib
 seaborn
@@ -8,3 +8,5 @@ pillow
 opencv-python-headless
 streamlit
 kaggle
+ipykernel
+nbconvert
