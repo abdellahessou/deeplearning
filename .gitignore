@@ -1,0 +1,15 @@
+# Données : trop lourdes pour Git (on les retélécharge depuis Kaggle)
+data/
+
+# Modèles entraînés : fichiers de plusieurs dizaines de Mo
+models/*.keras
+
+# Fichiers générés automatiquement par Python
+__pycache__/
+.ipynb_checkpoints/
+
+# Environnement virtuel : recréé avec requirements.txt
+.venv311/
+
+# Clé secrète de l'API Kaggle : ne JAMAIS la publier
+kaggle.json
