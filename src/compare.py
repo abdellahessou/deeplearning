@@ -20,7 +20,10 @@ from data import PREPROCESS, get_datasets
 def evaluer(name, seuil=0.5):
     """Évalue un modèle sur le test set et renvoie ses métriques dans un dictionnaire."""
     _, _, test = get_datasets(name)
-    model = keras.models.load_model(MODELS_DIR / f"{name}.keras")
+    # compile=False : on ne recharge que l'architecture et les poids, ce qui suffit pour prédire.
+    # Sinon le modèle garde les réglages d'entraînement de Colab (jit_compile=True, prévu pour le GPU),
+    # qui rendent les prédictions 4 fois plus lentes sur le processeur du PC.
+    model = keras.models.load_model(MODELS_DIR / f"{name}.keras", compile=False)
 
     # On charge tout le test en mémoire (624 images) : images déjà normalisées + vraies étiquettes
     x = np.concatenate([images.numpy() for images, _ in test])

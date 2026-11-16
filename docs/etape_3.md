@@ -74,6 +74,10 @@ rechargement ont été vérifiés. Ce test valide le code, pas la performance : 
 - `models/mobilenetv2_phase1_history.csv` : l'historique epoch par epoch.
 - `reports/figures/courbes_mobilenetv2.png` : les courbes loss et accuracy.
 
+> Note ajoutée à l'étape 4 : l'historique et les courbes de MobileNetV2 ont été régénérés par l'entraînement complet
+> sur Colab (phase 1 + fine-tuning). Les chiffres de ce document décrivent l'entraînement fait ici sur le PC ; ceux de
+> Colab sont très proches mais pas identiques (voir `docs/etape_4.md`).
+
 ### Écarts par rapport au guide
 
 - **Entraînement fait en local sur CPU** et non sur Colab : MobileNetV2 gelé est assez léger pour cela. Les trois
