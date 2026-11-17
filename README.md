@@ -93,6 +93,27 @@ Produit dans `reports/figures/` les cartes de chaleur Grad-CAM de 4 cas du test 
 faux positif, faux négatif) dans `gradcam_<modèle>.png`, et des 4 faux positifs les plus confiants dans
 `gradcam_fp_<modèle>.png`. Rouge = zone qui a le plus pesé dans la décision.
 
+## Application Streamlit
+
+Depuis la racine du projet, environnement activé :
+
+```bash
+streamlit run app/app.py
+```
+
+Si la commande `streamlit` est bloquée par Windows (contrôle d'application), utiliser :
+
+```bash
+python -m streamlit run app/app.py
+```
+
+L'application s'ouvre sur http://localhost:8501 (le premier chargement prend environ 15 secondes).
+Barre latérale : choix du modèle (parmi ceux présents dans `models/`) et du seuil de décision.
+Page principale : chargement d'une radio JPEG ou PNG, ou choix d'une radio d'exemple du test set ;
+l'application affiche la radio, la carte Grad-CAM, la prédiction et la probabilité de pneumonie.
+
+> Outil pédagogique : il ne remplace pas un diagnostic médical.
+
 ## Structure du projet
 
 ```
@@ -118,5 +139,5 @@ faux positif, faux négatif) dans `gradcam_<modèle>.png`, et des 4 faux positif
 - [x] Étape 4 – Fine-tuning et comparaison des 3 modèles
 - [x] Étape 5 – Évaluation complète
 - [x] Étape 6 – Explicabilité avec Grad-CAM
-- [ ] Étape 7 – Application Streamlit
+- [x] Étape 7 – Application Streamlit
 - [ ] Étape 8 – Rapport, README et soutenance

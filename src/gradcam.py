@@ -62,11 +62,17 @@ def superposer(img_rgb, heatmap, alpha=0.4):
     return np.uint8(img_rgb * (1 - alpha) + h * alpha)
 
 
-def charger_image(chemin):
-    """Lit une radio exactement comme le pipeline de données : RGB, 224x224, interpolation bilinéaire."""
-    img = tf.io.decode_image(tf.io.read_file(str(chemin)), channels=3, expand_animations=False)
+def decoder_image(octets):
+    """Décode une image (contenu brut d'un fichier JPEG ou PNG) exactement comme le pipeline de données :
+    RGB, 224x224, interpolation bilinéaire. Sert aussi à l'application Streamlit (étape 7)."""
+    img = tf.io.decode_image(octets, channels=3, expand_animations=False)
     img = tf.image.resize(img, IMG_SIZE)                        # float32, valeurs 0..255
     return img.numpy()
+
+
+def charger_image(chemin):
+    """Lit une radio depuis le disque (voir decoder_image)."""
+    return decoder_image(tf.io.read_file(str(chemin)))
 
 
 def expliquer(model, backbone, chemin):
