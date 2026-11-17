@@ -70,6 +70,19 @@ python src/compare.py
 (accuracy, precision, recall, F1, AUC, nombre de paramètres, temps d'inférence par image) ainsi que
 `reports/figures/comparaison_modeles.png`.
 
+## Évaluation détaillée
+
+```bash
+python src/evaluate.py --model mobilenetv2
+```
+
+Évalue un modèle sur le test set et produit :
+
+- `reports/rapport_<modèle>.txt` : precision, recall et F1 par classe ;
+- `reports/seuils_<modèle>.csv` : recall, precision, faux négatifs et faux positifs pour les seuils 0,3 à 0,7 ;
+- dans `reports/figures/` : matrice de confusion (`cm_`), courbe ROC (`roc_`), courbe précision-rappel (`pr_`),
+  et les erreurs les plus confiantes (`erreurs_fn_`, `erreurs_fp_`).
+
 ## Structure du projet
 
 ```
@@ -93,7 +106,7 @@ python src/compare.py
 - [x] Étape 2 – Pipeline de données, augmentation, poids des classes
 - [x] Étape 3 – Modèle de base et entraînement (transfer learning)
 - [x] Étape 4 – Fine-tuning et comparaison des 3 modèles
-- [ ] Étape 5 – Évaluation complète
+- [x] Étape 5 – Évaluation complète
 - [ ] Étape 6 – Explicabilité avec Grad-CAM
 - [ ] Étape 7 – Application Streamlit
 - [ ] Étape 8 – Rapport, README et soutenance
