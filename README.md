@@ -83,6 +83,16 @@ python src/evaluate.py --model mobilenetv2
 - dans `reports/figures/` : matrice de confusion (`cm_`), courbe ROC (`roc_`), courbe précision-rappel (`pr_`),
   et les erreurs les plus confiantes (`erreurs_fn_`, `erreurs_fp_`).
 
+## Explicabilité (Grad-CAM)
+
+```bash
+python src/gradcam.py --model mobilenetv2
+```
+
+Produit dans `reports/figures/` les cartes de chaleur Grad-CAM de 4 cas du test (vrai positif, vrai négatif,
+faux positif, faux négatif) dans `gradcam_<modèle>.png`, et des 4 faux positifs les plus confiants dans
+`gradcam_fp_<modèle>.png`. Rouge = zone qui a le plus pesé dans la décision.
+
 ## Structure du projet
 
 ```
@@ -107,6 +117,6 @@ python src/evaluate.py --model mobilenetv2
 - [x] Étape 3 – Modèle de base et entraînement (transfer learning)
 - [x] Étape 4 – Fine-tuning et comparaison des 3 modèles
 - [x] Étape 5 – Évaluation complète
-- [ ] Étape 6 – Explicabilité avec Grad-CAM
+- [x] Étape 6 – Explicabilité avec Grad-CAM
 - [ ] Étape 7 – Application Streamlit
 - [ ] Étape 8 – Rapport, README et soutenance
